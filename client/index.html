@@ -1,0 +1,49 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./matic.js"></script>
+</head>
+
+<body>
+    <script>
+
+        const from = "0xfed2fbDC651e12F64131da822304e52f898c3a8D" // from address
+        const recipient = '0x08328aD6E0Ad188Ab7378c6cc81209E1df922Dc7' // receipent address
+
+        const token = '0xc82c13004c06E4c627cF2518612A55CE7a3Db699' // test token address
+        const amount = '100000000000' // amount in wei
+
+        // Create object of Matic
+        const matic = new Matic({
+            maticProvider: "https://testnet2.matic.network",
+            parentProvider: "https://ropsten.infura.io/v3/70645f042c3a409599c60f96f6dd9fbc",
+            rootChainAddress: "0x60e2b19b9a87a3f37827f2c8c8306be718a5f9b4",
+            syncerUrl: "'https://matic-syncer2.api.matic.network/api/v1'",
+            watcherUrl: 'https://ropsten-watcher2.api.matic.network/api/v1',
+        })
+
+        matic.wallet = '0x70CEAE48F7548B4E9B109FF73E03640AFA550187B38698FA2CAF0B0FE2D5ACAD'
+
+        function sendToken() {
+            // Send Tokens
+            matic.transferTokens(token, recipient, amount, {
+                from,
+                // parent: true, // For token transfer on Main network (false for Matic Network)
+                onTransactionHash: (hash) => {
+                    // action on Transaction success
+                    console.log(hash) // eslint-disable-line
+                },
+            })
+        }
+
+        sendToken()
+
+    </script>
+
+</body>
+
+</html>
