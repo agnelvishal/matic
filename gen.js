@@ -1,4 +1,4 @@
-// created address with web3
+// created address with web3 to generate this
 
 const Web3 = require('web3')
 
