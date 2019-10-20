@@ -1,4 +1,5 @@
-<script src="https://cdn.jsdelivr.net/npm/maticjs/dist/matic.js"></script>
+const Matic = require('maticjs').default
+const config = require('./config')
 
 const from = config.FROM_ADDRESS // from address
 const recipient = '0x796011dD134abe45775f103168C50521370a3d7F' // receipent address
@@ -29,3 +30,6 @@ function sendToken() {
         },
     })
 }
+
+sendToken()
+
